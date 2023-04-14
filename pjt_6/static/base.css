@@ -1,0 +1,75 @@
+/* COMMON STYLES */
+@font-face {
+  font-family: 'Pretendard';
+  src: url('path/to/pretendard.ttf') format('truetype');
+}
+
+body {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: hsl(0, 0%, 20%);
+}
+
+h1 {
+  padding-top: 40px; padding-bottom:40px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* .inner {
+  display: flex;
+  justify-content: center;
+} */
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+
+/* MAIN */
+.divider {
+  height: 1px;
+  width: 100%;
+  background-color: black;
+  margin-top: 55px;
+}
+
+section {
+  margin-bottom: 100px;
+  padding:0px;
+}
+
+article {
+  border:solid lightgrey 1px;
+  padding-bottom: 2px;
+}
+
+.card-title {
+  text-align: center;
+  font-weight: bold;
+}
+
+.list-group-item {
+  text-align: center;
+}
+
+.posting-title {
+  float:left;
+  font-size: 17px;
+}
+
+.movie-title, .register-time {
+  float: left;
+}
+
+.writer {
+  float: right;
+}
+
+/* FOOTER */
+footer {
+  margin-bottom: 100px;
+}

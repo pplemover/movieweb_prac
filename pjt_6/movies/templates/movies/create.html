@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>새로운 영화를 등록하세요</h1>
+  <hr>
+  <form action="{% url 'movies:create' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit">
+  </form>
+
+  <a href="{% url 'movies:index' %}">전체 영화 목록 조회 페이지로 돌아가기</a>
+{% endblock content %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <h1>전체 영화 목록 조회 페이지</h1>
+  <hr>
+  {% for movies in movies_list %}
+    <p>영화 번호: {{movies.pk}}</p>
+    <p>
+      <a href="{% url 'movies:detail' movies.pk %}">
+      영화 제목: {{movies.title}}</a>
+    </p>
+    <p>영화 평점: {{movies.score}}</p>
+  {% endfor %}
+
+  <a href="{% url 'movies:create' %}">여기를 눌러 새로운 글을 작성하세요</a>
+{% endblock content %}
