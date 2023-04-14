@@ -23,7 +23,7 @@
       {% csrf_token %}
       <input type="submit" value="회원탈퇴">
   </form>
-  <h3>안녕하세요, {{user}} 님!</h3>
+  <h3>안녕하세요, <a href="{% url 'accounts:profile' user.username %}">{{user}} 님!</a></h3>
 
   <header>
     <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">

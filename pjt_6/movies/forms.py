@@ -1,7 +1,13 @@
 from django import forms
-from .models import Movie
+from .models import Movie, Comment
 
 class MovieForm(forms.ModelForm):
     class Meta: 
         model = Movie # Movie Model을 참고
         fields = '__all__'
+
+class Form(forms.ModelForm):
+    
+    class Meta:
+        model = Comment
+        exclude = ('article',)

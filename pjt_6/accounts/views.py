@@ -84,3 +84,9 @@ def change_password(request):
         # request에 들어 있는 user를 instance로 삼는다. (비어있는 폼 반환 x)
     context = {'form': form}
     return render(request, 'accounts/change_password.html', context)
+
+def profile(request, username):
+    user = get_user_model()
+    person = User.objects.get(username=username)
+    context = {'person': person}
+    return render(request, 'accounts/profile.html', context)

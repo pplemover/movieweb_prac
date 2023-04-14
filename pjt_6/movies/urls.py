@@ -16,4 +16,7 @@ urlpatterns = [
 
     # UPDATE (기존 영화 수정 페이지 조회 & 단일 영화 데이터 수정)
     path('<int:pk>/update/', views.update, name='update'),
+
+    # Comment (댓글 생성)
+    path('<int:pk>/comments/', views.comments_create, name='comments_create')
 ]

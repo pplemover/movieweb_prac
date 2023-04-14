@@ -9,4 +9,6 @@ urlpatterns = [
     path('signout/', views.signout, name='signout'),
     path('update/', views.update, name='update'),
     path('password/', views.change_password, name='change_password'),
+    # 단일 회원 프로필 조회
+    path('profile/<str:username>/', views.profile, name='profile'),
 ]
