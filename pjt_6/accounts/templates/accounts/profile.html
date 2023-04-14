@@ -2,7 +2,20 @@
 
 {% block content %}
   <h1> {{person.username}} 님의 프로필</h1>
-
+  <div>
+    <p>팔로잉: {{person.followings.all|length}}</p>
+    <!--{{person.followings.count}} -->
+    <p>팔로워: {{person.followers.all|length}}</p>
+    <!--{{person.followers.count}} -->
+    <form action="{% url 'accounts:follow' person.pk%}" method='POST'>
+      {% csrf_token %}
+      {% if request.user in person.followers.all %}
+        <button type='submit' class='btn btn-danger'>Unfollow</button>
+      {% else %}
+        <button type='submit' class='btn btn-success'>Follow</button>
+      {% endif %}
+    </form>
+  </div>
   <hr>
 
   <h2> {{person.username}}'s 게시물</h2>
@@ -24,6 +37,6 @@
     <div>{{article.title}}</div>
   {% endfor %}
   <hr>
-  <a href="{% url 'articles:index' %}">뒤로가기</a>
+  <a href="{% url 'articles:index' %}" class="btn btn-success">뒤로가기</a>
 
 {% endblock  %}
