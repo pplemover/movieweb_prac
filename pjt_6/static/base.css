@@ -50,12 +50,12 @@ img {
 }
 
 #nav {
-  text-align: right;
+  text-align: center;
   padding: 10px 30px 10px;
 }
 
 #user-hello {
-  text-align: right;
+  text-align: center;
   padding-right: 30px;
 }
 
@@ -104,7 +104,7 @@ article {
 }
 
 .writer {
-  float: right;
+  float: center;
 }
 
 /* FOOTER */
