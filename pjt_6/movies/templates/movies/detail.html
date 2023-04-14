@@ -14,7 +14,6 @@
   <p>개봉일 : {{movies.release_date}}</p>
   <p>장르 : {{movies.genre}}</p>
   <p>영화소개 : {{movies.description}}</p>
-
   {% if movies.actor_image %}
     <p>대표 배우</p>
     <img src="{{movies.actor_image.url}}" alt="" width=100>
@@ -29,5 +28,29 @@
     <input type="submit" value="DELETE">
   </form>
 
+  <br>
+  {% comment %} 댓글 {% endcomment %}
+  <h5>댓글<h5>
+  <form action="{% url 'movies:comments_create' movies.pk %}" method="POST">
+    {% csrf_token %}
+    {{comment_form}}
+    <input type="submit" value="작성">
+  </form>
+  <hr>
+  <h5>댓글 목록<h5>
+  <ul>
+    {% for comment in comments %}
+      <li>
+        {{comment.content}} - {{comment.user}}
+        {% if request.user == comment.user %}
+        <form action="{% url 'movies:comments_delete' movies.pk comment.pk %}" method="POST">
+          {% csrf_token %}
+          <input type="submit" value="삭제">
+        </form>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+  <hr>
   <a href="{% url 'movies:index' %}">전체 영화 목록 조회 페이지로 돌아가기</a>
 {% endblock content %}

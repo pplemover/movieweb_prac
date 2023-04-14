@@ -8,10 +8,9 @@ class Movie(models.Model):
 
 
 class Comment(models.Model):
-    article = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    content = models.CharField(max_length=200)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    content = models.CharField(max_length=100)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     parent = models.ForeignKey(
         'self',    
         on_delete=models.CASCADE,
