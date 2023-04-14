@@ -23,7 +23,4 @@ urlpatterns = [
 
     # Comment DELETE (댓글 삭제)
     path('<int:movie_pk>/comments/<int:comment_pk>/delete/', views.comments_delete, name='comments_delete'),
-
-    # Comment (댓글 생성)
-    # path('<int:pk>/comments/', views.comments_create, name='comments_create')
 ]

@@ -49,6 +49,18 @@
         </form>
         {% endif %}
       </li>
+
+      {% for reply in comment.replies.all %}
+        <p> >> {{reply.content}} </p>
+      {% endfor %}
+
+      <form action="{% url 'movies:comments_create' movies.pk %}" method="POST">
+        <input type="hidden" name="parent_pk" value="{{ comment.pk }}">
+          {% csrf_token %}
+          {{comment_form}} 
+        <input type="submit" value="대댓글">
+      </form>
+
     {% endfor %}
   </ul>
   <hr>
