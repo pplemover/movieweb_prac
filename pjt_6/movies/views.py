@@ -21,10 +21,12 @@ def detail(request, pk):
     movies = Movie.objects.get(id=pk)
     comment_form = CommentForm()
     comments = movies.comment_set.all()
+    re_comment_list = movies.comment_set.filter(parent__isnull=True) # 대댓글 리스트
     context = {
         'movies': movies,
         'comment_form': comment_form,
         'comments': comments,
+        're_comment_list': re_comment_list,
     }
     return render(request, 'movies/detail.html', context) 
 
@@ -35,7 +37,9 @@ def create(request):
     if request.method == 'POST':
         form = MovieForm(request.POST, request.FILES) # user가 입력한 데이터를 form에 채운다.
         if form.is_valid():                # 유효성 검사를 통과하면 
-            movies = form.save()        # 데이터 저장 후 
+            movies = form.save(commit=False)        # 데이터 저장 후 
+            movies.user = request.user
+            movies.save()
             return redirect('movies:detail', movies.pk) # 상세 페이지로 redirect
     else:
         form = MovieForm()             # 비어있는 form을 만든다.
@@ -76,10 +80,15 @@ def comments_create(request, pk):
     if request.user.is_authenticated:
         movie = Movie.objects.get(pk=pk)
         comment_form = CommentForm(request.POST)
+        parent_pk = request.POST.get('parent_pk')
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
             comment.movie = movie
-            comment_form.save()
+            comment.user = request.user
+            if parent_pk: # 답글
+                parent_comment = Comment.objects.get(pk=parent_pk)
+                comment.parent = parent_comment
+            comment.save()
         return redirect('movies:detail', movie.pk)
     return redirect('accounts:login')
 
