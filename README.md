@@ -27,3 +27,5 @@ accounts 앱 > urls.py 에
 
 
 TIME/// 외출좀하겠습디나
+
+4월 14일
