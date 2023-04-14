@@ -6,7 +6,7 @@ class MovieForm(forms.ModelForm):
         model = Movie # Movie Model을 참고
         fields = '__all__'
 
-class Form(forms.ModelForm):
+class CommentForm(forms.ModelForm):
     
     class Meta:
         model = Comment
